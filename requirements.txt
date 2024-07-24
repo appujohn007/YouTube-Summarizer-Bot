@@ -3,6 +3,7 @@ SpeechRecognition
 groq
 pytube3
 pytube
+yt_dlp
 pydub
 youtube_transcript_api
 redis
