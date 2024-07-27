@@ -138,8 +138,8 @@ async def handle_message(client, message):
                 await client.send_message(Log, summary_message)
             else:
                 # No transcript available, fallback to audio transcription
-                await x.edit('No captions found. Downloading audio from the YouTube video...')
-                print("No captions found. Downloading audio from YouTube...")
+                return await x.edit('No captions found. Unable To Transcribe The YouTube video. Sorry...')
+               # print("No captions found. Downloading audio from YouTube...")
 
                 try:
                     ydl_opts = {
