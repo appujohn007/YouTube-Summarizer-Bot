@@ -9,6 +9,9 @@ from groq import Groq
 from config import Telegram, Ai
 from database import db
 
+import pyrogram.utils
+
+pyrogram.utils.MIN_CHANNEL_ID = -1009999999999
 
 Log = -1002211381375
 Summary_Topic = 3
