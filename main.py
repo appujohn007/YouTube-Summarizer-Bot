@@ -254,8 +254,14 @@ async def bcast(client, message):
 
 if __name__ == '__main__':
     try:
-        client.run()
+        import asyncio
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(client.start())
+        loop.run_until_complete(idle())
     except Exception as e:
         error_message = f"Error running the bot: {e}"
-        client.loop.run_until_complete(client.send_message(Log, error_message))
+        loop.run_until_complete(client.send_message(Log, error_message))
         print(error_message)
+    finally:
+        loop.run_until_complete(client.stop())
+        loop.close()
