@@ -9,3 +9,4 @@ youtube_transcript_api
 redis
 pyrogram
 tgcrypto 
+Flask
