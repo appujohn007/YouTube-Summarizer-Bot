@@ -8,7 +8,8 @@ from pyrogram import Client, filters
 from groq import Groq
 from config import Telegram, Ai
 from database import db
-
+from threading import Thread
+from flask import Flask 
 import pyrogram.utils
 
 pyrogram.utils.MIN_CHANNEL_ID = -1009999999999
@@ -16,6 +17,24 @@ pyrogram.utils.MIN_CHANNEL_ID = -1009999999999
 Log = -1002211381375
 Summary_Topic = 3
 Error_Topic = 4
+
+
+
+# Initialize Flask app
+app = Flask(__name__)
+
+# Define the endpoint
+@app.route('/')
+def hello_world():
+    return 'Hello World'
+
+def run_flask():
+    app.run(host='0.0.0.0', port=8080)
+
+# Start the Flask app in a new thread
+flask_thread = Thread(target=run_flask)
+flask_thread.daemon = True
+flask_thread.start()
 
 system_prompt ="""
 Do NOT repeat unmodified content.
@@ -253,9 +272,10 @@ async def bcast(client, message):
     await xx.edit(f"Broadcast completed.\nSuccess: {done}\nFailed: {error}")
 
 if __name__ == '__main__':
-    try:
-        client.run()
-    except Exception as e:
-        error_message = f"Error running the bot: {e}"
-        client.loop.run_until_complete(client.send_message(Log, error_message))
-        print(error_message)
+    # Start Flask server
+    flask_thread = Thread(target=run_flask)
+    flask_thread.daemon = True
+    flask_thread.start()
+
+    # Start Pyrogram bot
+    client.run()
