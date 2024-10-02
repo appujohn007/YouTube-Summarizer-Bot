@@ -1,0 +1,10 @@
+frontend:
+    path: ./
+    publish: ""
+    scripts:
+        build: python main.py
+        deploy: pip install -r needs.txt
+    subdomain: YouTube-Summarizer-Bot
+name: YouTube-Summarizer-Bot
+region: us-east-1
+yamlVersion: 2
