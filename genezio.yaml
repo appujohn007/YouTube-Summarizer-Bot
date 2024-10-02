@@ -4,7 +4,7 @@ frontend:
     scripts:
         build: python main.py
         deploy: pip install -r needs.txt
-    subdomain: YouTube-Summarizer-Bot
-name: YouTube-Summarizer-Bot
+    subdomain: YouTube-Summarizer-Bott
+name: YouTube-Summarizer-Bott
 region: eu-central-1
 yamlVersion: 2
